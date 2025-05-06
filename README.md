@@ -6,8 +6,10 @@ Primeiro fase 0:
     - De começo duas tabelas principai. Uma de usuario com identificaçao de 
       
 
+```mermaid
 graph TD
     A[Início] --> B(Cadastrar Usuário)
     B --> C{Email válido?}
     C -->|Sim| D[Salva no BD]
     C -->|Não| E[Exibe erro]
+```
