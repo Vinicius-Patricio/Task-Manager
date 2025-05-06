@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Custom ###
+roadmap.txt
+comandos-sql.txt
