@@ -3,13 +3,28 @@ O Task Manager é mais um sistemas simples voltada inteiramente aos meus estudos
 Primeiro fase 0: 
     - Criação do projeto através do "Spring Initializr" com as dependencias necessarias;
     - Configuração inicial e temporaria de containers Docker para o banco de dados em Postgres;
-    - De começo duas tabelas principais. Primeira tabela de usuário com: identificação, email, senha que futuramente vai ser criptografada e as informações padrões de log. Segunda tabela de tasks com: nome da task, descrição, status , prioridade e informações de log.
+    - De começo duas tabelas principais:
       
 
 ```mermaid
 graph TD
-    A[Início] --> B(Cadastrar Usuário)
-    B --> C{Email válido?}
-    C -->|Sim| D[Salva no BD]
-    C -->|Não| E[Exibe erro]
+    A[Usuários]
+
+    A -->|Id|
+    A -->|Nome| 
+    A -->|E-mail| 
+    A -->|Senha| 
+    A -->|Data Criação| 
+    A -->|Data Atualização| 
+
+    B[Tasks]
+
+    B -->|Id|
+    B -->|Nome| 
+    B -->|Descricao| 
+    B -->|Status| 
+    B -->|Data Criação| 
+    B -->|Data Atualização| 
+    B -->|Id do Usuario| 
+    
 ```
