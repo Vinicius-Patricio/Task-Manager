@@ -8,7 +8,6 @@ Primeiro fase 0:
 
 ```mermaid
 erDiagram
-    USUARIOS ||--o{ TASKS : possui
     USUARIOS {
         number Id
         string Nome
@@ -26,5 +25,4 @@ erDiagram
         date DataAtualizacao
         number UsuarioId
     }
-    
 ```
