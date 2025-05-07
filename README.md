@@ -7,24 +7,24 @@ Primeiro fase 0:
       
 
 ```mermaid
-graph TD
-    A[Usuários]
-
-    A -->|Id|
-    A -->|Nome| 
-    A -->|E-mail| 
-    A -->|Senha| 
-    A -->|Data Criação| 
-    A -->|Data Atualização| 
-
-    B[Tasks]
-
-    B -->|Id|
-    B -->|Nome| 
-    B -->|Descricao| 
-    B -->|Status| 
-    B -->|Data Criação| 
-    B -->|Data Atualização| 
-    B -->|Id do Usuario| 
+erDiagram
+    USUARIOS ||--o{ TASKS : possui
+    USUARIOS {
+        number Id
+        string Nome
+        string E-mail
+        string Senha
+        date DataCriacao
+        date DataAtualizacao
+    }
+    TASKS {
+        number Id
+        string Nome
+        string Descricao
+        string Status
+        date DataCriacao
+        date DataAtualizacao
+        number UsuarioId
+    }
     
 ```
