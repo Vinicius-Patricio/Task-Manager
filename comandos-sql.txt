@@ -1,7 +1,7 @@
 #User sql
 
 create table usuario(
-    id integer not null primary key,
+    id serial not null primary key,
     name varchar(100) not null unique,
     email varchar(150) not null,
     password varchar (100) not null,
@@ -17,15 +17,15 @@ create type task_status AS ENUM ('TODO', 'IN_PROGRESS', 'DONE', 'ARCHIVED');
 create type task_priority AS ENUM ('LOW', 'MEDIUM', 'HIGH');
 
 create table task(
-    id integer not null primary key,
+    id serial not null primary key,
     title varchar(100) not null,
     description varchar(500) not null,
-    status task_status NOT NULL DEFAULT 'TODO'
-    priority task_priority NOT NULL DEFAULT 'MEDIUM',
+    status NOT NULL ,
+    priority NOT NULL ,
     due_date date,
     created_at timestamp,
     updated_at timestamp,
-    id_usuario integer not null references usuario(id)
+    user_id integer not null references usuario(id)
 )
 
 create index idx_task_id_usuario ON task(id_usuario);
