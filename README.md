@@ -38,6 +38,18 @@ Fase 1:
 
 Primeiros Testes com Banco de Dados junto com Postman
 
+Usuários:
+
 <img width="572" alt="image" src="https://github.com/user-attachments/assets/c532181c-5abe-4c27-82c1-e1a038c6399c" />
 
+
 <img width="764" alt="image" src="https://github.com/user-attachments/assets/66ea33a7-6749-456a-8bd3-d3326f274162" />
+
+Tarefas:
+
+<img width="580" alt="image" src="https://github.com/user-attachments/assets/1f9aa38a-6224-4e50-b134-263bde6a9823" />
+
+
+<img width="793" alt="image" src="https://github.com/user-attachments/assets/78861495-7f7b-4bb1-9d81-3bc99767d84e" />
+
+***Ocorreram várias modificações no decorrer dessa fase, afim de simplificar a possibilidade do cadastro de ambas as tabelas.
