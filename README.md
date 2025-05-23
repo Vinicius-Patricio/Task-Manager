@@ -58,7 +58,8 @@ Tarefas:
 Fase 2:
 
     -Integração do JWT Token:
-
+    
+```mermaid
 classDiagram
     class JWT {
         +header: Object
@@ -81,10 +82,14 @@ JWT --> Header
 JWT --> Claims
 JWT --> Signature
 
+```
+
     -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
 
     Exemplo de fluxo com JWT:
 
+    
+```mermaid
 sequenceDiagram
     participant Client
     participant Server
@@ -98,3 +103,4 @@ sequenceDiagram
     else Token inválido
         Server-->>Client: 401 Unauthorized
     end
+```
