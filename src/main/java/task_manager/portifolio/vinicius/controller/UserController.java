@@ -36,14 +36,18 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
 
-        User user = userMapper.toEntity(userDTO);
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        User savedUser = userService.saveUser(user);
+        System.out.println("Senha original recebida: " + userDTO.password());
+    
+        String encodedPassword = passwordEncoder.encode(userDTO.password());
+        System.out.println("Senha criptografada: " + encodedPassword);
         
-        UserDTO savedUserDTO = userMapper.toDTO(savedUser);
-        return ResponseEntity.ok(savedUserDTO);
+        User user = userMapper.toEntity(userDTO);
+        user.setPassword(encodedPassword);
+        
+        User savedUser = userService.saveUser(user);
+        System.out.println("Senha salva no banco: " + savedUser.getPassword());
+        
+        return ResponseEntity.ok(userMapper.toDTO(savedUser));
     }
 
     @DeleteMapping("{id}")

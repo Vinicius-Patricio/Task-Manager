@@ -2,10 +2,14 @@ package task_manager.portifolio.vinicius.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -24,7 +28,7 @@ import lombok.Data;
 @Entity
 @Table(name = "usuario")
 @Data
-public class User {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,16 +43,30 @@ public class User {
     @Column(name = "password", length = 100, nullable= false)
     private String password;
 
-    @Column(name = "created_at")
-    @CreatedDate
+    @Column(name = "created_at", updatable= false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    @LastModifiedDate
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch= FetchType.LAZY)
     @JsonManagedReference
     private List<Task> tasks = new ArrayList<>();
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("USER"));
+    }
+
+    @Override
+    public String getUsername() {
+        return  this.email;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
 }

@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import task_manager.portifolio.vinicius.controller.dto.UserDTO;
 import task_manager.portifolio.vinicius.model.User;
 
-@Mapper(componentModel= "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = org.mapstruct.ReportingPolicy.IGNORE)
 public interface UserMapper {
 
     @Mapping(target = "createdAt", ignore = true)
