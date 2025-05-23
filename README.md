@@ -53,3 +53,48 @@ Tarefas:
 <img width="793" alt="image" src="https://github.com/user-attachments/assets/78861495-7f7b-4bb1-9d81-3bc99767d84e" />
 
 ***Ocorreram várias modificações no decorrer dessa fase, afim de simplificar a possibilidade do cadastro de ambas as tabelas.
+
+
+Fase 2:
+
+    -Integração do JWT Token:
+
+    classDiagram
+        class JWT {
+            +header: Object
+            +payload: Claims
+            +signature: String
+        }
+
+        class Header {
+            +alg: "HS256"
+            +typ: "JWT"
+        }
+
+        class Claims {
+            +sub: "username" (String)
+            +iat: 1735689600 (Number)
+            +exp: 1735693200 (Number)
+        }
+
+        JWT --> Header
+        JWT --> Claims
+        JWT --> Signature
+
+    -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
+
+    Exemplo de fluxo com JWT:
+
+    sequenceDiagram
+        participant Client
+        participant Server
+        Client->>Server: POST /login (credenciais)
+        Server->>Server: Gera JWT (generateToken())
+        Server-->>Client: Retorna JWT
+        Client->>Server: GET /dados (Authorization: Bearer <JWT>)
+        Server->>Server: Valida JWT (isTokenValid())
+        alt Token válido
+            Server-->>Client: 200 OK (dados protegidos)
+        else Token inválido
+            Server-->>Client: 401 Unauthorized
+        end

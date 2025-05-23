@@ -1,7 +1,6 @@
 package task_manager.portifolio.vinicius.service;
 
 import org.hibernate.Hibernate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,15 +13,10 @@ import task_manager.portifolio.vinicius.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+
     private final TaskRepository taskRepository;
 
     public User saveUser(User user) {
-
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-
-        user.setPassword(encodedPassword);
-    
         return userRepository.save(user);
     }
 
