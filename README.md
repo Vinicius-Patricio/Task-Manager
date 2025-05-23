@@ -66,35 +66,35 @@ classDiagram
         +signature: String
     }
 
-    class Header {
-        +alg: "HS256"
-        +typ: "JWT"
-    }
+class Header {
+    +alg: "HS256"
+    +typ: "JWT"
+}
 
-    class Claims {
-        +sub: "username" (String)
-        +iat: 1735689600 (Number)
-        +exp: 1735693200 (Number)
-    }
+class Claims {
+    +sub: "username" (String)
+    +iat: 1735689600 (Number)
+    +exp: 1735693200 (Number)
+}
 
-    JWT --> Header
-    JWT --> Claims
-    JWT --> Signature
+JWT --> Header
+JWT --> Claims
+JWT --> Signature
 
     -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
 
     Exemplo de fluxo com JWT:
 
-    sequenceDiagram
-        participant Client
-        participant Server
-        Client->>Server: POST /login (credenciais)
-        Server->>Server: Gera JWT (generateToken())
-        Server-->>Client: Retorna JWT
-        Client->>Server: GET /dados (Authorization: Bearer <JWT>)
-        Server->>Server: Valida JWT (isTokenValid())
-        alt Token válido
-            Server-->>Client: 200 OK (dados protegidos)
-        else Token inválido
-            Server-->>Client: 401 Unauthorized
-        end
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: POST /login (credenciais)
+    Server->>Server: Gera JWT (generateToken())
+    Server-->>Client: Retorna JWT
+    Client->>Server: GET /dados (Authorization: Bearer <JWT>)
+    Server->>Server: Valida JWT (isTokenValid())
+    alt Token válido
+        Server-->>Client: 200 OK (dados protegidos)
+    else Token inválido
+        Server-->>Client: 401 Unauthorized
+    end
