@@ -60,6 +60,7 @@ Fase 2:
     -Integração do JWT Token:
     
 ```mermaid
+
 classDiagram
     class JWT {
         +header: Object
@@ -87,6 +88,7 @@ JWT --> Signature
     -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
 
     Exemplo de fluxo com JWT:
+
 ```mermaid
 4-adicionar-jwt-mais-endpoint-login
     sequenceDiagram
@@ -103,6 +105,7 @@ JWT --> Signature
             Server-->>Client: 401 Unauthorized
         end
 ```
+
 ```mermaid
 sequenceDiagram
     participant Client
@@ -118,6 +121,7 @@ sequenceDiagram
         Server-->>Client: 401 Unauthorized
     end
 ```
+
     Começo dos teste.
 
     Decidi começar com os testes do meu codigo. Foi uma parte bem complicada, mas existem algumas diferenças entre os testes:
