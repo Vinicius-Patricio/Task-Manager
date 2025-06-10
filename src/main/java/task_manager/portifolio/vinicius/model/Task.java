@@ -37,7 +37,7 @@ public class Task {
     @Column(name="status")
     private String status;
 
-    @Column(columnDefinition = "priority")
+    @Column(name = "priority")
     private String priority;
     
     @Column(name = "created_at")
