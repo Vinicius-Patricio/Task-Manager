@@ -90,7 +90,6 @@ JWT --> Signature
     Exemplo de fluxo com JWT:
 
 ```mermaid
-4-adicionar-jwt-mais-endpoint-login
     sequenceDiagram
         participant Client
         participant Server
