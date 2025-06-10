@@ -7,11 +7,13 @@ import task_manager.portifolio.vinicius.controller.dto.UserDTO;
 import task_manager.portifolio.vinicius.model.User;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = org.mapstruct.ReportingPolicy.IGNORE)
-public interface UserMapper {
+public interface UserMapper{
 
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "tasks", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "password", ignore = true)
 
     User toEntity(UserDTO dto);
 

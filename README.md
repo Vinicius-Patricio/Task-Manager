@@ -88,6 +88,20 @@ JWT --> Signature
 
     Exemplo de fluxo com JWT:
 
+4-adicionar-jwt-mais-endpoint-login
+    sequenceDiagram
+        participant Client
+        participant Server
+        Client->>Server: POST /login (credenciais)
+        Server->>Server: Gera JWT (generateToken())
+        Server-->>Client: Retorna JWT
+        Client->>Server: GET /dados (Authorization: Bearer <JWT>)
+        Server->>Server: Valida JWT (isTokenValid())
+        alt Token válido
+            Server-->>Client: 200 OK (dados protegidos)
+        else Token inválido
+            Server-->>Client: 401 Unauthorized
+        end
     
 ```mermaid
 sequenceDiagram
@@ -104,3 +118,12 @@ sequenceDiagram
         Server-->>Client: 401 Unauthorized
     end
 ```
+    Começo dos teste.
+
+    Decidi começar com os testes do meu codigo. Foi uma parte bem complicada, mas existem algumas diferenças entre os testes:
+
+        -Teste unitário: O teste unitário, verifica uma parte isolada do codigo, testando somente uma classe ou um metodo especifico, por exemplo o teste que fiz com a validação do Token JWT;
+
+        -Teste de integração: O teste de integração, utiliza todo o contexto de um aplicação, passando por todas as etapas, banco de dados, validação da aplicação, ou seja testes reais;
+
+        -Existe tambem um caso intermediário especifico, conhecido como "slice test", teste de controller com MockMvc + @MockBean, ou seja, um teste de componente com Spring. Foi o caso que utilizei no meu codigo por enquanto para o teste do AuthController.
