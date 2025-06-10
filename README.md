@@ -87,7 +87,7 @@ JWT --> Signature
     -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
 
     Exemplo de fluxo com JWT:
-
+```mermaid
 4-adicionar-jwt-mais-endpoint-login
     sequenceDiagram
         participant Client
@@ -102,7 +102,7 @@ JWT --> Signature
         else Token inválido
             Server-->>Client: 401 Unauthorized
         end
-    
+```
 ```mermaid
 sequenceDiagram
     participant Client
