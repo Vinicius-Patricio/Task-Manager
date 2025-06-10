@@ -58,33 +58,37 @@ Tarefas:
 Fase 2:
 
     -Integração do JWT Token:
+    
+```mermaid
+classDiagram
+    class JWT {
+        +header: Object
+        +payload: Claims
+        +signature: String
+    }
 
-    classDiagram
-        class JWT {
-            +header: Object
-            +payload: Claims
-            +signature: String
-        }
+class Header {
+    +alg: "HS256"
+    +typ: "JWT"
+}
 
-        class Header {
-            +alg: "HS256"
-            +typ: "JWT"
-        }
+class Claims {
+    +sub: "username" (String)
+    +iat: 1735689600 (Number)
+    +exp: 1735693200 (Number)
+}
 
-        class Claims {
-            +sub: "username" (String)
-            +iat: 1735689600 (Number)
-            +exp: 1735693200 (Number)
-        }
+JWT --> Header
+JWT --> Claims
+JWT --> Signature
 
-        JWT --> Header
-        JWT --> Claims
-        JWT --> Signature
+```
 
     -JWT Token é muito utilizado em verificações HTTP. Utilizado amplamente por sua segurança, que é feita por uma assinatura digital. É portável, ou seja, pode carregar informaçoes extras(ex: roles do usuário, e-mail, Id, nome e etc).
 
     Exemplo de fluxo com JWT:
 
+4-adicionar-jwt-mais-endpoint-login
     sequenceDiagram
         participant Client
         participant Server
@@ -98,7 +102,22 @@ Fase 2:
         else Token inválido
             Server-->>Client: 401 Unauthorized
         end
-
+    
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: POST /login (credenciais)
+    Server->>Server: Gera JWT (generateToken())
+    Server-->>Client: Retorna JWT
+    Client->>Server: GET /dados (Authorization: Bearer <JWT>)
+    Server->>Server: Valida JWT (isTokenValid())
+    alt Token válido
+        Server-->>Client: 200 OK (dados protegidos)
+    else Token inválido
+        Server-->>Client: 401 Unauthorized
+    end
+```
     Começo dos teste.
 
     Decidi começar com os testes do meu codigo. Foi uma parte bem complicada, mas existem algumas diferenças entre os testes:
@@ -108,6 +127,3 @@ Fase 2:
         -Teste de integração: O teste de integração, utiliza todo o contexto de um aplicação, passando por todas as etapas, banco de dados, validação da aplicação, ou seja testes reais;
 
         -Existe tambem um caso intermediário especifico, conhecido como "slice test", teste de controller com MockMvc + @MockBean, ou seja, um teste de componente com Spring. Foi o caso que utilizei no meu codigo por enquanto para o teste do AuthController.
-
-
-    
