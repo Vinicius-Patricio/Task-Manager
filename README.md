@@ -130,3 +130,24 @@ sequenceDiagram
         -Teste de integração: O teste de integração, utiliza todo o contexto de um aplicação, passando por todas as etapas, banco de dados, validação da aplicação, ou seja testes reais;
 
         -Existe tambem um caso intermediário especifico, conhecido como "slice test", teste de controller com MockMvc + @MockBean, ou seja, um teste de componente com Spring. Foi o caso que utilizei no meu codigo por enquanto para o teste do AuthController.
+
+
+Fase 3: 
+
+    Criação das primeiras páginas do frontend:
+
+Pagina de login:
+
+<img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/b5db847e-879a-4454-9162-bd83e2a83076" />
+
+-Futuramente pretendo fazer autenticações com oauth2 e recuperação de senha via email.
+
+Pagina inicial das tasks (que futuramente a pagina inicial com gráficos e informações sobre as tasks):
+
+<img width="1890" height="907" alt="image" src="https://github.com/user-attachments/assets/57b3c145-5e63-4cd5-8bfd-fdd771fb0654" />
+
+Cadastro das tasks: 
+
+<img width="1912" height="927" alt="image" src="https://github.com/user-attachments/assets/fa045f24-ec59-4905-aaea-799840517bbe" />
+
+
